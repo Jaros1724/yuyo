@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUME</title>
+  </head>
+  <body>
+    <script>
+ const personas = [];
+
+for (let i = 0; i < 3; i++) {
+  const nombre = prompt("Ingrese el nombre de la persona " + (i + 1));
+  const edad = parseInt(prompt("Ingrese la edad de la persona " + (i + 1)));
+
+  personas.push({ nombre, edad });
+}
+
+let personaMayorEdad = personas[0];
+for (let i = 1; i < personas.length; i++) {
+  if (personas[i].edad > personaMayorEdad.edad) {
+    personaMayorEdad = personas[i];
+  }
+}
+
+console.log("La persona con la mayor edad es " + personaMayorEdad.nombre + " con " + personaMayorEdad.edad + " años.");
+
+    </script>
+  </body>
+</html>

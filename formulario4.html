@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calculadora de Compra</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("fondo.jpg");
+            background-size: cover;
+            height: 100vh;
+        }
+        #container {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #8f9fe4;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px #888888;
+        }
+        label, select, input, button {
+            display: block;
+            margin-bottom: 10px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="password"], input[type="number"] {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        select {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #121213;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result-label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+    </head>
+    <body>
+        <div id="container">
+            <h1>TIENDA EN LINEA</h1>
+            <form id="purchaseForm">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" required>
+
+                <label for="discountCode">Código de Descuento:</label>
+                <input type="password" id="discountCode" required>
+
+                <label for="product">Producto:</label>
+                <select id="product">
+                    <option value="50000">Audífonos - $50,000</option>
+                    <option value="70000">Diadema - $70,000</option>
+                    <option value="60000">Mouse Inalámbrico - $60,000</option>
+                    <option value="150000">Parlantes - $150,000</option>
+                </select>
+
+                <label for="quantity">Cantidad a Comprar:</label>
+                <input type="number" id="quantity" required>
+
+                <button type="button" onclick="calculatePurchase()">Calcular
+                    Compra</button>
+            </form>
+
+            <div id="result" style="display: none;">
+                <p class="result-label">Valor de la Compra:</p>
+                <p id="purchaseValue"></p>
+                <p class="result-label">Valor del Descuento:</p>
+                <p id="discountValue"></p>
+                <p class="result-label">Valor a Pagar:</p>
+                <p id="totalValue"></p>
+            </div>
+        </div>
+
+        <script>
+        function calculatePurchase() {
+            var name = document.getElementById('name').value;
+            var discountCode = document.getElementById('discountCode').value;
+            var productPrice = parseFloat(document.getElementById('product').value);
+            var quantity = parseInt(document.getElementById('quantity').value);
+
+            var discount = 0;
+            if (discountCode === "123") {
+                discount = 0.1; // 10% discount
+            } else if (discountCode === "456") {
+                discount = 0.15; // 15% discount
+            }
+
+            var purchaseValue = productPrice * quantity;
+            var discountValue = purchaseValue * discount;
+            var totalValue = purchaseValue - discountValue;
+
+            document.getElementById('purchaseValue').textContent = "$" + purchaseValue.toFixed(2);
+            document.getElementById('discountValue').textContent = "$" + discountValue.toFixed(2);
+            document.getElementById('totalValue').textContent = "$" + totalValue.toFixed(2);
+            
+            document.getElementById('result').style.display = 'block';
+        }
+    </script>
+    </body>
+</html>
